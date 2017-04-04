@@ -1,31 +1,24 @@
 #' Initialize a new Alice Twist game
 #'
-#' Create an Alice Twist game that can
-#' be played by two users or against
-#' the CPU.
+#' Create an Alice Twist game that can be played
+#' by two users or against the CPU.
 #'
-#' @param players The number of players.
-#' \code{players} at the moment can be
-#' between 2 and 4 even if some methods
-#' are built for two players only.
-#' @param hands The number of hands for
-#' each player. Since this implementation
-#' come from the original kids game, the
-#' buckets that each player has are call
-#' hands. \code{hands} must be integer
-#' but at the moment its number has no
-#' limit.
-#' @param fingers The number of fingers
-#' for each hand. Also in this case the
-#' name of the variable is derived from
-#' the kids game but in this general form
-#' the number of \code{fingers} could be
-#' different from 5, provided that it
-#' must be integer.
-#' @param split If \code{TRUE}, then
-#' every time a split is possibile during
-#' the game it is performed. If \code{FALSE}
-#' the split is never performed.
+#' @param players The number of players. \code{players}
+#' at the moment can be between 2 and 4 even if some
+#' methods are built for two players only.
+#' @param hands The number of hands for each player.
+#' Since this implementation come from the original
+#' kids game, the buckets that each player has are
+#' call hands. \code{hands} must be integer but at the
+#' moment its number has no limit.
+#' @param fingers The number of fingers for each hand.
+#' Also in this case the name of the variable is
+#' derived from the kids game but in this general form
+#' the number of \code{fingers} could be different
+#' from 5, provided that it must be integer.
+#' @param split If \code{TRUE}, then every time a split
+#' is possibile during the game it is performed. If
+#' \code{FALSE} the split is never performed.
 #' @return A \code{alicetwist} game object.
 #' @examples
 #' new_game()
