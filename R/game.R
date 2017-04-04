@@ -61,7 +61,7 @@ new_game <- function(players = 2,
          .call = FALSE)
 
   # There must be at least 3 fingers
-  if (finger < 3)
+  if (fingers < 3)
     stop("number of `fingers` must be at least 3",
          call. = FALSE)
 
@@ -80,4 +80,22 @@ new_game <- function(players = 2,
 
 }
 
-
+#' Print an alicetwist game
+#' @export
+#' @keywords internal
+print.alicetwist <- function(x, ...) {
+  cat("Alice Twist: ",
+      game_players(x), " players, ",
+      game_hands(x), " hands and ",
+      game_fingers(x), " fingers",
+      "\n", sep = "")
+  cat("Game mode:",
+      ifelse(game_split(x), "split allowed", "no split"),
+      "\n\n\t")
+  board <- game_status(x)
+  row.names(board) <- paste("Player", 1:game_players(x))
+  utils::write.table(x = board,
+                     col.names = FALSE,
+                     sep = "\t",
+                     eol = "\n\n\t")
+}
