@@ -92,10 +92,17 @@ print.alicetwist <- function(x, ...) {
   cat("Game mode:",
       ifelse(game_split(x), "split allowed", "no split"),
       "\n\n\t")
+  cat(paste(rep(" ", 16),
+            collapse = ""))
+  cat(paste(LETTERS[1:game_hands(x)],
+            collapse = paste(rep(" ", 7),
+                             collapse = "")),
+      "\n\n\t")
   board <- game_status(x)
   row.names(board) <- paste("Player", 1:game_players(x))
   utils::write.table(x = board,
                      col.names = FALSE,
+                     quote = FALSE,
                      sep = "\t",
                      eol = "\n\n\t")
 }

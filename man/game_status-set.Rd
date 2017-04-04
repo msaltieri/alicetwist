@@ -4,7 +4,7 @@
 \alias{game_status<-}
 \title{Set the game status}
 \usage{
-game_status(game, player, values) <- value
+game_status(game, player) <- value
 }
 \arguments{
 \item{game}{An \code{alicetwist} game object}
@@ -12,7 +12,7 @@ game_status(game, player, values) <- value
 \item{player}{The player whose hands are to
 be modified}
 
-\item{values}{A vector containing the new
+\item{value}{A vector containing the new
 number of fingers to assign to each hand}
 }
 \description{

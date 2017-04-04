@@ -19,16 +19,16 @@ game_status <- function(game) {
 #' @param game An \code{alicetwist} game object
 #' @param player The player whose hands are to
 #' be modified
-#' @param values A vector containing the new
+#' @param value A vector containing the new
 #' number of fingers to assign to each hand
 #' @export
 #' @keywords internal
-`game_status<-` <- function(game, player, values) {
+`game_status<-` <- function(game, player, value) {
   stopifnot(inherits(game, "alicetwist"))
   if (player > game[["players"]])
     stop("`player` must be at least equal to the number of players in the game",
          .call = FALSE)
-  game[["status"]][player, ] <- values
+  game[["status"]][player, ] <- value
   game
 }
 
