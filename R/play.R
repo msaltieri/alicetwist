@@ -15,10 +15,6 @@
 #' undergoes the hit.
 #' @param target_hand The ID of the hand which is
 #' been hit.
-#' @param vector Instead of using \code{active_player},
-#' \code{active_hand}, \code{target_player} and
-#' \code{target_hand}, a vector can be used to
-#' specify in one shot the four IDs.
 #' @return A new \code{alicetwist} game object after
 #' the given move is accomplished.
 #' @seealso \code{\link[alicetwist]{new_game}}
@@ -40,25 +36,19 @@ play <- function(game,
                  active_player,
                  active_hand,
                  target_player,
-                 target_hand,
-                 vector) {
+                 target_hand) {
   stopifnot(inherits(game, "alicetwist"))
 
-  num_players <- game_players(game)
-  num_hands <- game_hands(game)
-
-  # If a vector is given, make sure it is valid
-  if (missing(active_player) && missing(active_hand) &&
+  # If only the active player is provided,
+  # make a random move
+  if (!is.null(active_player) && missing(active_hand) &&
       missing(target_player) && missing(target_hand)) {
-    if (!is.vector(vector) || length(vector) != 4) {
-      stop("The vector of moves must have 4 entries",
-           call. = FALSE)
-    }
 
-    p1 <- vector[1]
-    h1 <- vector[2]
-    p2 <- vector[3]
-    h2 <- vector[4]
+    p1 <- active_player
+    h1 <- sample(1:game_hands(game), 1)
+    p2 <- sample(setdiff(1:game_players(game),
+                         active_player), 1)
+    h2 <- sample(1:game_hands(game), 1)
 
   } else {
 
@@ -89,7 +79,7 @@ play <- function(game,
 
   # Check if game is ended
   if (sum(target_hands) == 0) {
-    message("Player", p1, "won!")
+    message("Player ", p1, " won!")
     invisible(game)
   } else {
     game
