@@ -44,11 +44,27 @@ play <- function(game,
   if (!is.null(active_player) && missing(active_hand) &&
       missing(target_player) && missing(target_hand)) {
 
+    # Defining non zero hands for active player
+    nonZeroHands <- which(game_status(game)[active_player, ] != 0)
+
     p1 <- active_player
-    h1 <- sample(1:game_hands(game), 1)
-    p2 <- sample(setdiff(1:game_players(game),
-                         active_player), 1)
-    h2 <- sample(1:game_hands(game), 1)
+    h1 <- ifelse(length(nonZeroHands) == 1,
+                 nonZeroHands,
+                 sample(nonZeroHands, 1))
+
+    # Defining competitors
+    competitors <- which(1:game_players(game) != active_player)
+
+    p2 <- ifelse(length(competitors) == 1,
+                 competitors,
+                 sample(competitors, 1))
+
+    # Defining non zero hands for competitors
+    nonZeroHands <- which(game_status(game)[p2, ] != 0)
+
+    h2 <- ifelse(length(nonZeroHands) == 1,
+                 nonZeroHands,
+                 sample(nonZeroHands, 1))
 
   } else {
 
@@ -79,8 +95,14 @@ play <- function(game,
 
   # Check if game is ended
   if (sum(target_hands) == 0) {
-    message("Player ", p1, " won!")
-    invisible(game)
+    if (game_players(game) == 2) {
+      message("Player ", p1, " won!")
+      invisible(game)
+    } else {
+      message("Player ", p2, " is out of the game.")
+      game <- del_player(game, p2)
+      game
+    }
   } else {
     game
   }

@@ -32,6 +32,23 @@ game_status <- function(game) {
   game
 }
 
+#' Delete a player from the game
+#'
+#' @param game An \code{alicetwist} game object
+#' @param player The ID of the player that is
+#' to be removed from the game
+#' @export
+#' @keywords internal
+del_player <- function(game, player) {
+  stopifnot(inherits(game, "alicetwist"))
+  if (player > game[["players"]])
+    stop("`player` must be at least equal to the number of players in the game",
+         .call = FALSE)
+  game[["status"]] <- game[["status"]][-player, ]
+  game[["players"]] <- game_players(game) - 1
+  game
+}
+
 #' Get the number of players
 #'
 #' @param game An \code{alicetwist} game object

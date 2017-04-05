@@ -4,7 +4,7 @@
 \alias{play}
 \title{Play a single move in the game}
 \usage{
-play(game, active_player, active_hand, target_player, target_hand, vector)
+play(game, active_player, active_hand, target_player, target_hand)
 }
 \arguments{
 \item{game}{An \code{alicetwist} game object.}
@@ -19,11 +19,6 @@ undergoes the hit.}
 
 \item{target_hand}{The ID of the hand which is
 been hit.}
-
-\item{vector}{Instead of using \code{active_player},
-\code{active_hand}, \code{target_player} and
-\code{target_hand}, a vector can be used to
-specify in one shot the four IDs.}
 }
 \value{
 A new \code{alicetwist} game object after

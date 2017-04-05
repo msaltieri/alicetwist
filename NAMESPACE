@@ -3,6 +3,7 @@
 S3method(print,alicetwist)
 export("%>%")
 export("game_status<-")
+export(del_player)
 export(game_fingers)
 export(game_hands)
 export(game_players)
